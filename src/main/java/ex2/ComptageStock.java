@@ -9,57 +9,109 @@ public class ComptageStock {
 	private int nb;
 	private int resultat;
 	private Date dateDebutComptage;
-	private String dateFinComptage;
-	private String type;
+	private Date dateFinComptage;
+	private Type type;
 	
+	/**
+	 * Methods add new element
+	 * @param montant
+	 */
 	public void ajouterElement(int montant){
 		nb++;
 		resultat +=montant;
 	}
 	
-	public void afficheStatutComptage(){
-		
-		if (type!=null && type.equals("SOM")){
+	
+	/**
+	 * Print som
+	 *
+	 */
+	private void afficheTypeSom(){
+		if (type!=null && type.equals(Type.SOM)){
 			System.out.println("Ce comptage est de type SOMME");
 			System.out.println("Nombre d'élements "+nb);
 			
 			System.out.println("Résultat "+resultat);
 		}
-		else if (type!=null && type.equals("MOY")){
+	}
+	
+	/**
+	 * Methods
+	 * Print Moy
+	 */
+	private void afficheTypeMoy(){
+		if (type!=null && type.equals(Type.MOY)){
 			System.out.println("Ce compte est de type MOYENNE");
 			System.out.println("Nombre d'élements "+nb);
 			
 			System.out.println("Résultat "+resultat/nb);
 		}
-		
-		if (dateDebutComptage!=null){
-			SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-			System.out.println(f.format(dateDebutComptage));
-		}
-		
+	}
+	
+	/**
+	 * Methods
+	 * Print type
+	 */
+	private void afficheType(){
+		afficheTypeSom();
+		afficheTypeMoy();
+
+	}
+	
+	/**
+	 * Methods
+	 * Print DebutCompatge
+	 */
+	private void afficheDebutComptage(){
+		System.out.println(DateUtils.format(dateDebutComptage));
+	}
+	
+	/**
+	 * Methods
+	 * Print FinComptage
+	 */
+	private void afficheFinComptage(){
 		if (dateFinComptage!=null){
 			System.out.println("Le comptage est clos depuis le "+dateFinComptage);
-			if (nb==0){
-				System.out.println("Le comptage est clos mais n'a pas d'éléments. Le comptage est en anomalie.");
-			}
-			else {
-				System.out.println("Le comptage est clos et est OK.");
-			}
+			affichFinComptageCloture();
 		}
 		else {
 			System.out.println("Le compte est actif.");
 		}
 	}
-	
-	public Date getDateFinComptage(){
-		SimpleDateFormat ff = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		if (dateFinComptage!=null){
-			try {
-				return ff.parse(dateFinComptage);
-			} catch (ParseException e) {
-				return null;
-			}
+
+
+	/** Methods
+	 * 
+	 */
+	private void affichFinComptageCloture() {
+		if (nb==0){
+			System.out.println("Le comptage est clos mais n'a pas d'éléments. Le comptage est en anomalie.");
 		}
-		return null;
+		else {
+			System.out.println("Le comptage est clos et est OK.");
+		}
+	}
+	
+	/**
+	 * Methods
+	 * Print statut comptage
+	 */
+	public void afficheStatutComptage(){
+		
+		afficheType();
+		
+		afficheDebutComptage();
+		afficheFinComptage();
+
+	}
+	
+	/**
+	 * Methods
+	 * @return datefincomptage
+	 * @throws ParseException
+	 */
+	public Date getDateFinComptage() throws ParseException{
+		return DateUtils.parse(dateFinComptage);
 	}
 }

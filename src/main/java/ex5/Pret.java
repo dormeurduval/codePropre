@@ -4,12 +4,10 @@ import java.util.Date;
 
 public class Pret {
 
-	private Strategy strategy;
-	private double capital;
-	private double capitalRestantDu;
-	private double taux;
-	private Date dateDebut;
-	private Date dateFin;
+	protected Strategy strategy;
+	protected double capital;
+	protected double taux;
+	protected Date dateDebut;
 	
 	public Pret(double capital, double taux, Date dateDebut) {
 		super();
@@ -17,25 +15,6 @@ public class Pret {
 		this.capital = capital;
 		this.taux = taux;
 		this.dateDebut = dateDebut;
-	}
-	
-	public Pret(double capital, double taux, Date dateDebut, Date dateFin) {
-		super();
-		this.strategy = new PretATerme();
-		this.capital = capital;
-		this.taux = taux;
-		this.dateDebut = dateDebut;
-		this.dateFin = dateFin;
-	}
-	
-	public Pret(double capital, double capitalRestantDu, double taux, Date dateDebut, Date dateFin) {
-		super();
-		this.strategy = new PretATerme();
-		this.capital = capital;
-		this.capitalRestantDu = capitalRestantDu;
-		this.taux = taux;
-		this.dateDebut = dateDebut;
-		this.dateFin = dateFin;
 	}
 
 	/** Getter for strategy
@@ -66,19 +45,7 @@ public class Pret {
 		this.capital = capital;
 	}
 
-	/** Getter for capitalRestantDu
-	 * @return the capitalRestantDu
-	 */
-	public double getCapitalRestantDu() {
-		return capitalRestantDu;
-	}
 
-	/** Setter
-	 * @param capitalRestantDu the capitalRestantDu to set
-	 */
-	public void setCapitalRestantDu(double capitalRestantDu) {
-		this.capitalRestantDu = capitalRestantDu;
-	}
 
 	/** Getter for taux
 	 * @return the taux
@@ -108,18 +75,5 @@ public class Pret {
 		this.dateDebut = dateDebut;
 	}
 
-	/** Getter for dateFin
-	 * @return the dateFin
-	 */
-	public Date getDateFin() {
-		return dateFin;
-	}
-
-	/** Setter
-	 * @param dateFin the dateFin to set
-	 */
-	public void setDateFin(Date dateFin) {
-		this.dateFin = dateFin;
-	}
 	
 }
