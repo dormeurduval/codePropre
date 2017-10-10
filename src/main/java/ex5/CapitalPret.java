@@ -5,10 +5,7 @@ package ex5;
 
 import java.util.Date;
 
-/**
- * @author joris
- *
- */
+
 public final class CapitalPret extends LimitedPret {
 
 	private double capitalRestantDu;
